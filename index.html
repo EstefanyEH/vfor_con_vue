@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio-Componentes</title>
+    <style>
+
+        body{
+            background-image: url( https://rickandmortypod.com/wp-content/uploads/2018/11/cropped-RM_page-header_background1-3.png) ;
+            background-repeat: no-repeat;
+
+        }
+        .style_personaje{
+            padding: 10px;
+            
+        }
+        .style_personaje > img{
+            width: 130px;
+            border-radius: 50%;
+            
+        }
+
+        .style_personaje >h3{
+            color: green;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 15px;
+            
+
+        }
+        .container{
+            display: flex;
+            align-items: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <personaje 
+        v-for="imagen in personajes" 
+        :key="imagen.src"
+        :nombre_personaje="imagen.nombre"
+        :src_img="imagen.src"
+        class="style_personaje">
+    </personaje>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component(`personaje`, {
+            props: {
+                nombre_personaje:{
+                    type: String,
+                    required: true,
+                },
+                src_img:{
+                    type: String,
+                    required: true,
+                }
+            },
+            template: ` 
+            <div class="container">
+                <img :src="src_img">
+                <h3>{{nombre_personaje}}</h3> 
+            </div>`
+        })
+
+        const app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    personajes: [
+                        { nombre: "Rick Sanchez", src: "https://rickandmortyapi.com/api/character/avatar/1.jpeg" },
+                        { nombre: "Morty Smith", src: "https://rickandmortyapi.com/api/character/avatar/2.jpeg" },
+                        { nombre: "Summer Smith", src: "https://rickandmortyapi.com/api/character/avatar/3.jpeg" },
+                        { nombre: "Beth Smith", src: "https://rickandmortyapi.com/api/character/avatar/4.jpeg" },
+                        { nombre: "Jerry Smith", src: "https://rickandmortyapi.com/api/character/avatar/5.jpeg" },
+                        { nombre: "Abadango Cluster Princess", src: "https://rickandmortyapi.com/api/character/avatar/6.jpeg" },
+                        { nombre: "Abradolf Lincler", src: "https://rickandmortyapi.com/api/character/avatar/7.jpeg" },
+
+                    ]
+
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
